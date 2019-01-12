@@ -33,3 +33,19 @@
         display: none;
     }
 }
+
+
+.form-border{
+    border: 1px solid #bbb9b9;
+    border-radius: 5px;
+    padding: 20px 10px 10px 10px;
+}
+
+.custom-label{
+    display:block;
+    width: 100%;
+    height:25px;
+    font-size: 14px;
+    line-height: 1.5px;
+    color: #555;
+}
