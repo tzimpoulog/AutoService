@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AutoService.Models.AccountViewModels
 {
@@ -23,5 +19,25 @@ namespace AutoService.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+
+        [Required]
+        public string City { get; set; }
+
+        [Required]
+        public string PostalCode { get; set; }
+
+        [Required]
+        public string PhoneNumber { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }
