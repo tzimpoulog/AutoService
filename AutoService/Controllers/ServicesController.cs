@@ -1,6 +1,8 @@
 ﻿using AutoService.Data;
 using AutoService.Models;
+using AutoService.Utility;
 using AutoService.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,6 +21,8 @@ namespace AutoService.Controllers
             _db = db;
         }
 
+
+        [Authorize]
         public IActionResult Index(int carId)
         {
             var car = _db.Cars.FirstOrDefault(c => c.Id == carId);
@@ -40,7 +44,7 @@ namespace AutoService.Controllers
         }
 
         //Get : Services/Create
-
+        [Authorize(Roles = SD.AdminEndUder)]
         public IActionResult Create(int carId)
         {
             var car = _db.Cars.FirstOrDefault(c => c.Id == carId);

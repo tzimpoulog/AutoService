@@ -1,5 +1,7 @@
 ﻿using AutoService.Data;
 using AutoService.Models;
+using AutoService.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Controllers
 {
+    [Authorize(Roles = SD.AdminEndUder)]
     public class UsersController : Controller
     {
 

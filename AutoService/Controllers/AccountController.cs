@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = SD.AdminEndUder)]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {

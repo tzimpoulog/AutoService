@@ -1,5 +1,7 @@
 ﻿using AutoService.Data;
 using AutoService.Models;
+using AutoService.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Controllers
 {
+    [Authorize]
     public class ServiceTypesController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -29,6 +32,7 @@ namespace AutoService.Controllers
         }
 
         //POST: Service/Create
+        [Authorize(Roles = SD.AdminEndUder)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ServiceType serviceType)
@@ -94,6 +98,7 @@ namespace AutoService.Controllers
         }
 
         //Delete : ServiceTypes/Delete/1
+        [Authorize(Roles = SD.AdminEndUder)]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -110,7 +115,8 @@ namespace AutoService.Controllers
             return View(serviceType);
         }
 
-
+        //Post Delete
+        [Authorize(Roles = SD.AdminEndUder)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveServiceType(int id)
