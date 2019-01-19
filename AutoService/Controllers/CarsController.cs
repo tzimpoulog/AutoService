@@ -7,9 +7,11 @@ using System.Linq;
 using AutoService.Models;
 using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutoService.Controllers
 {
+    [Authorize]
     public class CarsController : Controller
     {
         private ApplicationDbContext _db;
