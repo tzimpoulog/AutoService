@@ -4,6 +4,7 @@ using AutoService.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -129,7 +130,19 @@ namespace AutoService.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var userInDb = await _db.Users.SingleOrDefaultAsync(u => u.Id == id);
-            _db.Remove(userInDb);
+            var cars = _db.Cars.Where(x => x.UserId == userInDb.Id);
+
+            List<Car> listCar = cars.ToList();
+
+            foreach(var car in listCar)
+            {
+                var services = _db.Services.Where(x => x.CarId == car.Id);
+
+                _db.Services.RemoveRange(services);
+            }
+
+            _db.Cars.RemoveRange(cars);
+            _db.Users.Remove(userInDb);
             await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
